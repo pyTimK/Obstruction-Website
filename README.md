@@ -1,5 +1,5 @@
 # On Watch
-The application is currently deployed at [https://mosquito-rippler.web.app](https://https://mosquito-rippler.web.app/)
+The application is currently deployed at [https://bike-rack-lock.web.app](https://https://bike-rack-lock.web.app/)
 
 ## Screenshot
 
