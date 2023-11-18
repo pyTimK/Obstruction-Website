@@ -19,6 +19,7 @@ body {
   padding: 0;
   max-width: 100%;
   overflow-x: hidden;
+  height: 100vh;
 }
 
 
@@ -107,6 +108,10 @@ input[type=number] {
   .Toastify__toast-container {
     width: 100% !important;
   } 
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1 !important;
 }
 
 

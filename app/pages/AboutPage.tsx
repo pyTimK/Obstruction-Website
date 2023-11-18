@@ -2,20 +2,19 @@ import HeaderSettings from "@/components/custom/HeaderSettings";
 import { Pages } from "../wrappers/PageWrapper";
 import Title from "@/components/custom/Title";
 import { Constants } from "@/classes/Constants";
+import Logo from "@/components/custom/Logo";
+import SizedBox from "@/components/templates/SizedBox";
 
 interface AboutPageProps {}
 
 const AboutPage: React.FC<AboutPageProps> = ({}) => {
   return (
-    <div className="flex flex-col px-5 pt-1 text-center items-center">
+    <div className="flex flex-col px-5 pt-1 h-full text-center items-center">
       {/* //! HEADER */}
-      <HeaderSettings title="About" page={Pages.Profile} />
-      <img
-        src="/images/icons/icon.png"
-        alt="watch icon"
-        className="h-40 mx-auto mt-20 mb-6"
-      />
-      <img src="/images/icons/icon.png" alt="logo" className="h-20 mb-6" />
+      <HeaderSettings title="About" page={Pages.Main} />
+      <div className="drop-shadow-lg mt-5 mb-10">
+        <Logo size={150} />
+      </div>
       <Title />
       <p className="mt-10">{Constants.Description}</p>
     </div>

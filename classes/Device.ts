@@ -4,4 +4,5 @@ export interface Device {
   isUsing: boolean;
   isPaying: boolean;
   user_id: string;
+  seconds_payed: number;
 }

@@ -11,6 +11,9 @@ import { auth } from "../firebase";
 import { FHContext } from "../wrappers/FHWrapper";
 import { PageWrapperContext, Pages } from "../wrappers/PageWrapper";
 import FH from "@/classes/FH";
+import MyModal from "@/components/templates/MyModal";
+import useModal from "@/hooks/useModal";
+import ExitIcon from "@/components/svg/icon/ExitDoorIcon";
 
 interface ProfilePageProps {}
 
@@ -27,6 +30,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
   const [photoURLUpdated, setPhotoURLUpdated] = useState(false);
   const [nameUpdated, setNameUpdated] = useState(false);
   const [updatingMyUser, setUpdatingMyUser] = useState(false);
+
+  const signOutModal = useModal();
 
   const hasUpdates = photoURLUpdated || nameUpdated;
 
@@ -73,7 +78,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-full h-52 bg-red pt-1 px-5">
+      <div className="w-full h-52 bg-darker_primary pt-1 px-5">
         <div className="flex justify-between items-center">
           <BackAndroidIcon
             color="white"
@@ -121,10 +126,35 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
           label="Sign Out"
           outlined
           className="rounded-full"
+          disabled={updatingMyUser}
           pY={0.2}
-          onClick={() => signOut(auth)}
+          onClick={signOutModal.open}
         />
       </div>
+      <MyModal useModal={signOutModal} title="Sign Out">
+        <div className="flex flex-col items-center gap-5">
+          <p className="text-smooth_black text-center">
+            Are you sure you want to sign out?
+          </p>
+          <div className="flex gap-5">
+            <MyButton
+              type="button"
+              label="Cancel"
+              outlined
+              className="rounded-full"
+              pY={0.2}
+              onClick={signOutModal.close}
+            />
+            <MyButton
+              type="button"
+              label="Sign Out"
+              className="rounded-full bg-red"
+              pY={0.2}
+              onClick={() => signOut(auth)}
+            />
+          </div>
+        </div>
+      </MyModal>
     </div>
   );
 };

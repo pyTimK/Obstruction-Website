@@ -5,17 +5,19 @@ import QuasarPage from "@/components/templates/QuasarPage";
 import { useLoading } from "@/hooks/useLoading";
 import { useUser } from "@/hooks/useUser";
 import { User } from "firebase/auth";
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import RegisterPage from "../pages_outer/RegisterPage";
 import SignInPage from "../pages_outer/SignInPage";
 import PageWrapper from "./PageWrapper";
 import { useFHWatch } from "@/hooks/useFHWatch";
+import { AdminSettings } from "@/classes/templates/AdminSettings";
 
 //? ----------------------
 //? FIRESTORE DATA OBJECTS
 //? ----------------------
 
 export const FHContext = createContext({
+  adminSettings: {} as AdminSettings,
   user: {} as User,
   myUser: {} as MyUser | null,
   device: {} as Device | null,
@@ -46,6 +48,7 @@ const FHWrapper: React.FC<FHWrapperProps> = ({}) => {
     loadingMyUser,
     loadingDevice
   );
+
   // console.log("loading", loading);
   // console.log("loadingAdminSettings", loadingAdminSettings);
   // console.log("loadingUser", loadingUser);
@@ -54,11 +57,12 @@ const FHWrapper: React.FC<FHWrapperProps> = ({}) => {
 
   //! PAGES
   if (loading) return <div className="bg-red w-screen h-screen"></div>;
+  if (adminSettings === null) return <QuasarPage />;
   if (adminSettings?.quasar) return <QuasarPage />;
   if (user === null) return <SignInPage />;
   if (myUser === null) return <RegisterPage user={user} />;
   return (
-    <FHContext.Provider value={{ user, myUser, device }}>
+    <FHContext.Provider value={{ adminSettings, user, myUser, device }}>
       <PageWrapper />
     </FHContext.Provider>
   );

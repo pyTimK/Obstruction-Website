@@ -36,7 +36,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         setPage,
       }}
     >
-      <div className="bg-bg" style={{ width: "100%" }}>
+      <div className="bg-bg w-full h-full">
         {page === Pages.Main && <MainPage />}
         {page === Pages.Payment && <PaymentPage />}
         {page === Pages.Gcash && <GcashPage />}

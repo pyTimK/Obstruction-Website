@@ -1,7 +1,7 @@
 import { Device } from "./Device";
 import { MyUser } from "./MyUser";
 import FHT, { FHPicture } from "./templates/FHT";
-import { Quasar } from "./templates/Quasar";
+import { AdminSettings } from "./templates/AdminSettings";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -12,7 +12,7 @@ class DeviceFHT extends FHT<Device> {
   collectionName = "device";
 }
 
-class AdminSettingsFHT extends FHT<Quasar> {
+class AdminSettingsFHT extends FHT<AdminSettings> {
   collectionName = "admin";
 }
 

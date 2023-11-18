@@ -3,10 +3,10 @@ import MyButton from "./MyButton";
 import { twMerge } from "tailwind-merge";
 import CrossCircleIcon from "../svg/icon/CrossCircleIcon";
 import { jsoFont } from "@/styles/fonts";
+import useModal from "@/hooks/useModal";
 
 interface MyModalProps {
-  isOpen: boolean;
-  closeModal: () => void;
+  useModal: ReturnType<typeof useModal>;
   title: string;
   children: React.ReactNode;
   height?: string;
@@ -18,8 +18,7 @@ interface MyModalProps {
 }
 
 const MyModal: React.FC<MyModalProps> = ({
-  isOpen,
-  closeModal,
+  useModal,
   title,
   children,
   height,
@@ -31,40 +30,25 @@ const MyModal: React.FC<MyModalProps> = ({
 }) => {
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={useModal.isOpen}
       ariaHideApp={false}
-      className={twMerge(
-        "absolute inset-0 px-5 py-5 text-zinc-600 -translate-x-1/2 -translate-y-1/2 rounded-xl w-fit h-fit top-1/2 left-1/2",
-        className,
-        jsoFont
-      )}
-      onRequestClose={closeModal}
+      className={twMerge(" inset-0 text-zinc-600", className, jsoFont)}
+      onRequestClose={useModal.close}
       // style={customStyles}
     >
+      {/* MAIN CONTENT */}
       <div
-        className={twMerge("relative m-auto w-64 h-64", classNameInner)}
-        style={{ height, width }}
+        className={twMerge(
+          "absolute w-72 drop-shadow-lg shadow-lg bg-white rounded-xl left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2",
+          classNameContent
+        )}
       >
-        {/* BACKGROUND LINE */}
-        <div
-          className={twMerge(
-            "absolute w-full h-full rotate-[-3deg] border-2 border-white rounded-xl",
-            hideLine && "hidden"
-          )}
-        ></div>
-
-        {/* MAIN CONTENT */}
-        <div
-          className={twMerge(
-            "absolute w-full h-full bg-white px-5 py-5 rounded-xl ",
-            classNameContent
-          )}
-        >
-          <p className="text-2xl font-bold text-center text-smooth_black mb-3">
+        <div className="bg-darker_primary rounded-t-xl py-2">
+          <p className="text-2xl font-bold text-center text-white text-smooth_black">
             {title}
           </p>
-          {children}
         </div>
+        <div className="py-5 px-3">{children}</div>
       </div>
     </Modal>
   );
