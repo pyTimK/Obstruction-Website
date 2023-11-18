@@ -5,17 +5,29 @@ import BackAndroidIcon from "../svg/icon/BackAndroidIcon";
 interface HeaderSettingsProps {
   title: string;
   page?: Pages;
+  onClick?: () => void;
 }
 
 const HeaderSettings: React.FC<HeaderSettingsProps> = ({
   title,
-  page = Pages.Main,
+  page,
+  onClick,
 }) => {
   const { setPage } = useContext(PageWrapperContext);
   return (
     <div className="w-full h-20">
       <div className=" w-full flex justify-between items-center">
-        <BackAndroidIcon size={25} onClick={() => setPage(page)} />
+        <BackAndroidIcon
+          size={25}
+          onClick={() => {
+            if (onClick) {
+              onClick();
+            }
+            if (page) {
+              setPage(page);
+            }
+          }}
+        />
         <p className="font-semibold">{title}</p>
         <BackAndroidIcon size={25} hidden />
       </div>

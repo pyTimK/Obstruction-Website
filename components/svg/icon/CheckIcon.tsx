@@ -11,7 +11,7 @@ const CheckIcon: React.FC<CheckIconProps> = ({ size = 22 }) => (
   >
     <path
       d="M11.6667 36.7824L26.0257 51.0417L58.3334 18.9584"
-      stroke="#36FF6E"
+      stroke="#FFFFFF"
       strokeWidth="5"
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -7,16 +7,74 @@ import Card from "@/components/custom/Card";
 import { FHContext } from "../wrappers/FHWrapper";
 import UnlockIcon from "@/components/svg/icon/UnlockIcon";
 import { lektonFont } from "@/styles/fonts";
+import MyButton from "@/components/templates/MyButton";
+import FH from "@/classes/FH";
+import notify from "@/myfunctions/notify";
+import useModal from "@/hooks/useModal";
+import MyModal from "@/components/templates/MyModal";
 
 interface PaymentPageProps {}
 
 const PaymentPage: React.FC<PaymentPageProps> = ({}) => {
-  const { setPage } = useContext(PageWrapperContext);
-  const [secLeft, setSecLeft] = useState(0);
+  const { myUser, device } = useContext(FHContext);
+  const { setPage, setHowMuch } = useContext(PageWrapperContext);
+  const [startLoading, setStartLoading] = useState(false);
+  const backmodal = useModal();
+
+  //! LOCK DEVICE
+  const lockDevice = () => {
+    if (!device || !myUser) return;
+    const newEndTimestamp = new Date().getTime() / 1000 + device.seconds_payed;
+    setStartLoading(true);
+    FH.Device.update(device, {
+      isUsing: true,
+      isPaying: false,
+      seconds_payed: 0,
+      end_timestamp: newEndTimestamp,
+      user_id: myUser.id,
+    })
+      .then(() => {
+        setHowMuch(0);
+        setPage(Pages.Main);
+      })
+      .catch((err) => {
+        console.log(err);
+        notify(err);
+      })
+      .finally(() => {
+        setStartLoading(false);
+      });
+  };
+
+  //! CANCEL PAYMENT
+  const cancelPayment = () => {
+    if (!device) return;
+    backmodal.close();
+    setStartLoading(true);
+    FH.Device.update(device, {
+      isUsing: false,
+      isPaying: false,
+      seconds_payed: 0,
+      end_timestamp: Math.floor(new Date().getTime() / 1000),
+      user_id: "",
+    })
+      .then(() => {
+        setHowMuch(0);
+        setPage(Pages.Main);
+      })
+      .catch((err) => {
+        console.log(err);
+        notify(err);
+      })
+      .finally(() => {
+        setStartLoading(false);
+      });
+  };
+
   return (
     <div className="flex flex-col px-5 pt-1 text-center items-center">
       {/* //! HEADER */}
-      <HeaderSettings title="Payment" page={Pages.Main} />
+      <HeaderSettings title="Payment" onClick={backmodal.open} />
       <div>
         {/* //! TIMER */}
         <div className="bg-darker_primary text-white">
@@ -45,7 +103,47 @@ const PaymentPage: React.FC<PaymentPageProps> = ({}) => {
           />
           <p>Pay using GCash</p>
         </motion.div>
+
+        {/* //! START BUTTON */}
+        <div className="px-10">
+          <MyButton
+            label="Start"
+            onClick={lockDevice}
+            className="mt-10 bg-red rounded-full drop-shadow-lg shadow-lg"
+            disabled={
+              !device ||
+              !device.isPaying ||
+              device.seconds_payed <= 0 ||
+              startLoading
+            }
+            // color="light_primary"
+          />
+        </div>
       </div>
+      <MyModal useModal={backmodal} title="Unlock">
+        <div className="flex flex-col items-center gap-5">
+          <p className="text-smooth_black text-center">
+            Are you sure you want to cancel the service?
+          </p>
+          <div className="flex gap-5">
+            <MyButton
+              type="button"
+              label="No"
+              outlined
+              className="rounded-full"
+              pY={0.2}
+              onClick={backmodal.close}
+            />
+            <MyButton
+              type="button"
+              label="Yes"
+              className="rounded-full bg-red"
+              pY={0.2}
+              onClick={cancelPayment}
+            />
+          </div>
+        </div>
+      </MyModal>
     </div>
   );
 };

@@ -14,6 +14,7 @@ interface MyInputProps {
   defaultValue?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  maxLength?: number;
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -26,12 +27,14 @@ const MyInput: React.FC<MyInputProps> = ({
   defaultValue,
   onFocus,
   onBlur,
+  maxLength,
 }) => {
   return (
     <div className={twMerge("flex justify-center", divClassName)}>
       <input
         ref={inputField.ref}
         step="any"
+        maxLength={maxLength}
         className={twMerge(
           "w-full max-w-sm border rounded-lg bg-light_primary p-4",
           interFont,

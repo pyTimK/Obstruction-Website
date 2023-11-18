@@ -31,6 +31,9 @@ module.exports = {
         black: "#000000",
         gray: "#262626",
         bluegreen: "#2AB6B5",
+        gcash_bg: "#ECEBF0",
+        gcash_loading_bg: "#FEFEFE",
+        gcash_blue: "#0056E4",
       },
     },
     
