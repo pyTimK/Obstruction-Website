@@ -23,7 +23,7 @@ const HeaderSettings: React.FC<HeaderSettingsProps> = ({
             if (onClick) {
               onClick();
             }
-            if (page) {
+            if (page !== undefined) {
               setPage(page);
             }
           }}

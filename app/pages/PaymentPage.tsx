@@ -23,8 +23,13 @@ const PaymentPage: React.FC<PaymentPageProps> = ({}) => {
 
   //! LOCK DEVICE
   const lockDevice = () => {
+    console.log("1");
     if (!device || !myUser) return;
-    const newEndTimestamp = new Date().getTime() / 1000 + device.seconds_payed;
+    console.log("2");
+    const newEndTimestamp = Math.floor(
+      new Date().getTime() / 1000 + device.seconds_payed
+    );
+    console.log("3");
     setStartLoading(true);
     FH.Device.update(device, {
       isUsing: true,
@@ -42,6 +47,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({}) => {
         notify(err);
       })
       .finally(() => {
+        console.log("4");
         setStartLoading(false);
       });
   };
@@ -93,7 +99,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({}) => {
         <motion.div
           whileTap={{ scale: 0.85 }}
           onClick={() => setPage(Pages.Gcash)}
-          className="flex gap-5 border border-light_primary items-center justify-center bg-white drop-shadow-lg shadow-lg pl-2 pr-5 py-1 rounded-full mx-auto w-fit"
+          className="flex gap-5 border border-light_primary items-center justify-center select-none cursor-pointer bg-white drop-shadow-lg shadow-lg pl-2 pr-5 py-1 rounded-full mx-auto w-fit"
         >
           <img
             className="translate-x-3"
