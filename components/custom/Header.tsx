@@ -1,24 +1,16 @@
-import { FHContext } from "@/app/wrappers/FHWrapper";
-import { PageWrapperContext, Pages } from "@/app/wrappers/PageWrapper";
-import { useContext } from "react";
-import AboutIcon from "../svg/icon/AboutIcon";
-import Avatar from "../templates/Avatar";
-import Title from "./Title";
+import HeaderBackground from "./HeaderBackground";
 
-interface HeaderProps {}
+interface HeaderProps {
+  title: string;
+}
 
-const Header: React.FC<HeaderProps> = ({}) => {
-  const { myUser } = useContext(FHContext);
-  const { setPage } = useContext(PageWrapperContext);
+const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
-    <div className="absolute w-full h-10 bg-white z-10 flex items-center justify-between px-5 py-8 rounded-b-3xl shadow">
-      <AboutIcon onClick={() => setPage(Pages.About)} />
-      <Title size={85} />
-      <Avatar
-        src={myUser?.photoURL}
-        size={40}
-        onClick={() => setPage(Pages.Profile)}
-      />
+    <div className="flex justify-end relative w-full bg-header">
+      <HeaderBackground />
+      <div className="absolute top-1/2 -translate-y-1/2 px-5 left-0">
+        <p className="text-gray text-xl">{title}</p>
+      </div>
     </div>
   );
 };

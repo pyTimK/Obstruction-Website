@@ -1,12 +1,12 @@
 # On Watch
-The application is currently deployed at [https://bike-rack-lock.web.app](https://https://bike-rack-lock.web.app/)
+The application is currently deployed at the local network of the device at [http://192.168.1.2](http://192.168.1.2)
 
 ## Screenshot
 
 ![alt text](https://github.com/pyTimK/bike-rack-lock/blob/main/public/images/screenshot.png)
 
 ## About
-Welcome to our advanced bike rack lock system. With an integrated Arduino circuit and coin slot, our formal solution ensures secure and precise management. Insert 5 peso coins to activate the timer, offering a seamless and reliable way to safeguard your bicycle. Experience cutting-edge technology for peace of mind on your cycling excursions.
+Discover efficiency with our ANPR Camera System. Live video, license plate tracking, and seamless vehicle management. Elevate security and stay ahead with real-time insights.
 
 
 

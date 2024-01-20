@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import LoadingPage from "../pages_outer/LoadingPage";
-import FHWrapper from "./FHWrapper";
+import FHWrapper from "./MongoDBWrapper";
 
 //? ----------------------
 //? LOADING PAGE
@@ -23,10 +23,10 @@ export const LoadingContext = createContext({
   setLoading: {} as Dispatch<SetStateAction<boolean>>,
 });
 
-interface ConstantsWrapperProps {}
+interface ConstantsWrapperProps { }
 
-const ConstantsWrapper: React.FC<ConstantsWrapperProps> = ({}) => {
-  const [loading, setLoading] = useState(true);
+const ConstantsWrapper: React.FC<ConstantsWrapperProps> = ({ }) => {
+  const [loading, setLoading] = useState(false);
 
   return (
     <>

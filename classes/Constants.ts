@@ -1,8 +1,19 @@
-export abstract class StorageNames {}
+export abstract class StorageNames { }
 
 export const Constants = {
-  pesoToMinutes: 12,
-  maxSeconds: 359999,
+  obstructionSeconds: 60 * 5,
   Description:
-    "Welcome to our advanced bike rack lock system. With an integrated Arduino circuit and coin slot, our formal solution ensures secure and precise management. Insert 5 peso coins to activate the timer, offering a seamless and reliable way to safeguard your bicycle.",
+    "Discover efficiency with our ANPR Camera System. Live video, license plate tracking, and seamless vehicle management. Elevate security and stay ahead with real-time insights.",
+  serverBaseURL: "http://localhost:5000",
+  ErrorCodes: {
+    "11000": "Plate number already exists",
+  }
 };
+export function getError(code: string | undefined) {
+  switch (code) {
+    case "11000":
+      return "Plate number already exists";
+    default:
+      return "Something went wrong";
+  }
+}

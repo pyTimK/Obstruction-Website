@@ -1,15 +1,25 @@
 import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ChevronRightProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  hidden?: boolean;
 }
 
-const ChevronRight: React.FC<ChevronRightProps> = ({ onClick, size = 11 }) => (
+const ChevronRight: React.FC<ChevronRightProps> = ({
+  onClick,
+  size = 11,
+  hidden = false,
+}) => (
   <motion.svg
-    onClick={onClick}
-    className="cursor-pointer"
+    onClick={(e) => {
+      if (onClick && !hidden) {
+        onClick(e);
+      }
+    }}
+    className={twMerge("cursor-pointer", hidden && "opacity-0")}
     whileTap={{ scale: 0.8 }}
     width={size}
     viewBox="0 0 53 99"

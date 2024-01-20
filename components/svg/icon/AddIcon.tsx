@@ -6,17 +6,17 @@ interface AddIconProps {
   size?: number;
 }
 
-const AddIcon: React.FC<AddIconProps> = ({ onClick, size = 35 }) => (
+const AddIcon: React.FC<AddIconProps> = ({ onClick, size = 50 }) => (
   <motion.svg
     onClick={onClick}
-    className="cursor-pointer"
+    className="cursor-pointer shadow"
     whileTap={{ scale: 0.8 }}
     width={size}
     viewBox="0 0 58 58"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="28.9999" cy="29.1516" r="28.6616" fill="#EB1C36" />
+    <circle cx="28.9999" cy="29.1516" r="28.6616" fill="#060606" />
     <path
       d="M29 41.9612V16.3423"
       stroke="#FDFDFD"

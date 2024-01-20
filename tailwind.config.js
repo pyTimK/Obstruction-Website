@@ -15,28 +15,30 @@ module.exports = {
       colors: {
 
         // required
-        light_primary: "#018BCC",
-        darker_primary: "#143761",
-        darkest_primary: "#0F2A4B",
+        light_primary: "#474747",
+        darker_primary: "#1f1f1f",
+        darkest_primary: "#060606",
         link: "#15233D",
 
         // custom
-        bg: "#F6F6F6",
+        black: "#060606",
+        bg: "#F9F9FB",
         white: "#FFFFFF",
-        red: "#EB1C36",
-        red_bg: "#EC354B",
-        red_light: "#F99394",
-        blue: "#143761",
-        blue_light: "#018BCC",
-        black: "#000000",
-        gray: "#262626",
-        bluegreen: "#2AB6B5",
-        gcash_bg: "#ECEBF0",
-        gcash_loading_bg: "#FEFEFE",
-        gcash_blue: "#0056E4",
+        gray: "#B1B1B1",
+        red: "#C80000",
+        blue: "#000AFF",
+        header: "#27292C",
       },
+
+      fontSize: {
+        '2xs': '.625rem',
+        '3xs': '.5rem',
+        '4xs': '.375rem',
+        '5xs': '.25rem',
+      },
+      
     },
-    
+
   },
   plugins: [],
 }

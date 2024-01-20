@@ -1,5 +1,4 @@
 import { InputField } from "@/hooks/useInputField";
-import { interFont } from "@/styles/fonts";
 import { ChangeEventHandler, RefObject } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -37,7 +36,6 @@ const MyInput: React.FC<MyInputProps> = ({
         maxLength={maxLength}
         className={twMerge(
           "w-full max-w-sm border rounded-lg bg-light_primary p-4",
-          interFont,
           inputField.error ? "border-red" : "border-zinc-600",
           className
         )}

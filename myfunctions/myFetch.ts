@@ -12,7 +12,7 @@ const myFetch = async (
     };
 
     const res = await fetch(url, {
-      method: "POST", // Use POST request method
+      method: method, // Can use POST, PUT, DELETE request methods
       headers,
       body: JSON.stringify(body_data), // Convert data to JSON string and send it in the request body
     });

@@ -2,8 +2,8 @@ import Modal from "react-modal";
 import MyButton from "./MyButton";
 import { twMerge } from "tailwind-merge";
 import CrossCircleIcon from "../svg/icon/CrossCircleIcon";
-import { jsoFont } from "@/styles/fonts";
 import useModal from "@/hooks/useModal";
+import { feSchriftFont } from "@/styles/fonts";
 
 interface MyModalProps {
   useModal: ReturnType<typeof useModal>;
@@ -32,7 +32,7 @@ const MyModal: React.FC<MyModalProps> = ({
     <Modal
       isOpen={useModal.isOpen}
       ariaHideApp={false}
-      className={twMerge(" inset-0 text-zinc-600", className, jsoFont)}
+      className={twMerge(" inset-0 text-zinc-600", className, feSchriftFont)}
       onRequestClose={useModal.close}
       // style={customStyles}
     >
