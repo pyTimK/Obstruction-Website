@@ -12,7 +12,7 @@ const ViolationText: React.FC<ViolationTextProps> = ({ type, className }) => {
       className={twMerge(
         "text-2xs",
         type === "Obstruction" && "text-blue",
-        type === "Missing" && "text-red",
+        type === "Unregistered" && "text-red",
         type === "Coding" && "text-green-600",
         className
       )}

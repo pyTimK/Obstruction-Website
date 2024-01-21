@@ -223,3 +223,9 @@ input:checked + .my-switch-slider:before {
 .my-switch-slider.my-switch-round:before {
   border-radius: 50%;
 }
+
+
+/*//! CUSTOM  */
+.video-js {
+  max-height: 180px !important;
+}

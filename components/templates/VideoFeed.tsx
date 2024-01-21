@@ -15,7 +15,7 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ src }) => {
       setPlayer(
         videojs(videoElement, {}, () => {
           console.log("player is ready");
-          //   videoRef.current?.play();
+          videoRef.current?.play();
         })
       );
     }
@@ -31,7 +31,13 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ src }) => {
 
   return (
     <div className="w-full border max-w-3xl">
-      <video className="video-js w-full" ref={videoRef} controls autoPlay>
+      <video
+        className="video-js w-full"
+        ref={videoRef}
+        controls
+        autoPlay
+        autoFocus
+      >
         <source src={src} type="application/x-mpegURL" />
       </video>
     </div>

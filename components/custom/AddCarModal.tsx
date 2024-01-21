@@ -47,13 +47,15 @@ const AddCarModal: React.FC<AddCarModalProps> = ({ addCarModal, editCar }) => {
     [phone!.length !== 11, "Phone number must be 11 digits"],
   ]);
 
-  const [missing, setMissing] = useState<boolean>(editCar?.missing ?? false);
-  const handleMissingChange = () => {
-    setMissing(!missing);
+  const [unregistered, setUnregistered] = useState<boolean>(
+    editCar?.missing ?? false
+  );
+  const handleUnregisteredChange = () => {
+    setUnregistered(!unregistered);
   };
 
   useEffect(() => {
-    setMissing(editCar?.missing ?? false);
+    setUnregistered(editCar?.missing ?? false);
   }, [editCar]);
 
   //! Handle Form Submission
@@ -85,7 +87,7 @@ const AddCarModal: React.FC<AddCarModalProps> = ({ addCarModal, editCar }) => {
       is_detected: false,
       date: date,
       snapshots: [],
-      missing: missing,
+      missing: unregistered,
     };
 
     //? Add to database
@@ -189,10 +191,10 @@ const AddCarModal: React.FC<AddCarModalProps> = ({ addCarModal, editCar }) => {
           <div className="w-full flex gap-2 items-center">
             <input
               type="checkbox"
-              checked={missing}
-              onChange={handleMissingChange}
+              checked={unregistered}
+              onChange={handleUnregisteredChange}
             />
-            <p>MISSING</p>
+            <p>UNREGISTERED</p>
           </div>
 
           {/*//! Delete Button  */}

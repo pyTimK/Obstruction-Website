@@ -9,7 +9,7 @@ export default interface Violation {
     date: ISOString;
 }
 
-export type ViolationType = "Obstruction" | "Missing" | "Coding";
+export type ViolationType = "Obstruction" | "Unregistered" | "Coding";
 
 
 

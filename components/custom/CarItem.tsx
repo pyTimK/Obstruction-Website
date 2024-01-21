@@ -26,7 +26,7 @@ const CarItem: React.FC<CarItemProps> = ({ car, onClick }) => {
       {/*//! UPPER RIGHT */}
       {car.missing && (
         <div className="absolute top-2 right-2 text-right flex flex-col justify-end gap-1">
-          <p className="text-2xs text-red">MISSING</p>
+          <p className="text-2xs text-red">UNREGISTERED</p>
         </div>
       )}
     </motion.div>
